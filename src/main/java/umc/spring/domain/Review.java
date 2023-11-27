@@ -1,9 +1,6 @@
 package umc.spring.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import umc.spring.domain.common.BaseEntity;
 
 @Entity
@@ -15,6 +12,7 @@ public class Review extends BaseEntity {
 
     private String body;
 
+    @Column(scale = 1)
     private Float score;
 
 }
