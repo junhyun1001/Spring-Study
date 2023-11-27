@@ -1,9 +1,6 @@
 package umc.spring.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import umc.spring.domain.common.BaseEntity;
 
 @Entity
@@ -14,5 +11,9 @@ public class ReviewImage extends BaseEntity {
     private Long id;
 
     private String imageUrl;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "review_id")
+    private Review review;
 
 }

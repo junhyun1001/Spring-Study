@@ -3,6 +3,9 @@ package umc.spring.domain;
 import jakarta.persistence.*;
 import umc.spring.domain.common.BaseEntity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 public class Store extends BaseEntity {
 
@@ -19,4 +22,10 @@ public class Store extends BaseEntity {
     @Column(scale = 1)
     private Float score;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "region_id")
+    private Region region;
+
+    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
+    private List<Mission> missionList = new ArrayList<>();
 }
