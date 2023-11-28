@@ -11,4 +11,10 @@ public class TempResponse {
         String testString;
     }
 
+    @Builder
+    @Getter
+    public static class TempExceptionDto {
+        Integer flag;
+    }
+
 }
