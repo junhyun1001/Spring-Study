@@ -12,6 +12,7 @@ public enum ErrorStatus implements BaseCode {
 
     // 일반적인 에러 응답
     INTERNER_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "COMMON500", "서버 에러"),
+    BAD_REQUEST(HttpStatus.BAD_REQUEST, "COMMON400", "잘못된 요청입니다."),
 
     // TempException 응답
     TEMP_EXCEPTION(HttpStatus.BAD_REQUEST, "TEMP401", "flag가 2입니다."),
