@@ -20,7 +20,7 @@ public class MemberConverter {
 
         Gender gender = switch (joinRequestDto.getGender()) {
             case "MALE" -> Gender.MALE;
-            case "FEMALE" -> Gender.FEMAL;
+            case "FEMALE" -> Gender.FEMALE;
             default -> null;
         };
 
