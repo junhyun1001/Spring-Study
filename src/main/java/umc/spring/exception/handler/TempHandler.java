@@ -1,4 +1,4 @@
-package umc.spring.exception.temp;
+package umc.spring.exception.handler;
 
 import umc.spring.apipayload.code.status.ErrorStatus;
 import umc.spring.exception.GeneralException;

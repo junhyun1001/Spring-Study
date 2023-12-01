@@ -1,4 +1,4 @@
-package umc.spring.exception.food_category;
+package umc.spring.exception.handler;
 
 import umc.spring.apipayload.code.status.ErrorStatus;
 import umc.spring.exception.GeneralException;

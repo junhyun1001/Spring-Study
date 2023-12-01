@@ -10,7 +10,7 @@ import umc.spring.domain.FoodCategory;
 import umc.spring.domain.Member;
 import umc.spring.domain.mapping.MemberPrefer;
 import umc.spring.dto.member.MemberRequest;
-import umc.spring.exception.food_category.FoodCategoryHandler;
+import umc.spring.exception.handler.FoodCategoryHandler;
 import umc.spring.repository.FoodCategoryRepository;
 import umc.spring.repository.MemberRepository;
 

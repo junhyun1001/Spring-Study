@@ -2,7 +2,7 @@ package umc.spring.service.temp;
 
 import org.springframework.stereotype.Service;
 import umc.spring.apipayload.code.status.ErrorStatus;
-import umc.spring.exception.temp.TempHandler;
+import umc.spring.exception.handler.TempHandler;
 
 @Service
 public class TempQueryServiceImpl implements TempQueryService {
