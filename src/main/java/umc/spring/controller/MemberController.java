@@ -1,7 +1,7 @@
 package umc.spring.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +21,7 @@ public class MemberController {
     private final MemberCommandService memberCommandService;
 
     @PostMapping
-    public ApiResponse<MemberResponse.JoinResponseDto> join(@RequestBody @Validated MemberRequest.JoinRequestDto joinRequestDto) {
+    public ApiResponse<MemberResponse.JoinResponseDto> join(@RequestBody @Valid MemberRequest.JoinRequestDto joinRequestDto) {
         Member member = memberCommandService.joinMember(joinRequestDto);
         return ApiResponse.onSuccess(MemberConverter.toJoinResponseDto(member));
     }
