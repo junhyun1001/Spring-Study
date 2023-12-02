@@ -31,6 +31,7 @@ public class MemberRequest {
         @Size(min = 5, max = 12)
         private String specAddress;
         @ExistCategories
+        @Size(min = 1, max = 5)
         private List<Long> preferCategory;
     }
 
