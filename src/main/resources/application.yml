@@ -20,7 +20,7 @@ spring:
           # update : entity가 수정되면 수정된 내용만 반영
           # create-drop: session 종료시 스키마 삭제
           # validate: session 시작시 객체구성과 스키마가 다르면 예외발생
-          auto: create
+          auto: update
         default_batch_fetch_size: 1000    # 데이터를 검색할 때 한 번에 가져올 최대 레코드 수
     defer-datasource-initialization: true # EntityManagerFactory 빈이 생성되고 초기화된 후까지 DataSource 초기화를 연기할지 여부
 #logging:
