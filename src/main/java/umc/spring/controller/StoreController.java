@@ -1,5 +1,6 @@
 package umc.spring.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,7 +21,7 @@ public class StoreController {
     private final StoreCommandService storeCommandService;
 
     @PostMapping
-    public ApiResponse<StoreResponse.RegisterResultDto> registerStore(@RequestBody StoreRequest.RegisterDto registerDto) {
+    public ApiResponse<StoreResponse.RegisterResultDto> registerStore(@RequestBody @Valid StoreRequest.RegisterDto registerDto) {
         Store store = storeCommandService.registerStore(registerDto);
         return ApiResponse.onSuccess(StoreConverter.toRegisterResultDto(store));
     }
