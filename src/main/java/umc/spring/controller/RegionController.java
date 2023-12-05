@@ -15,7 +15,7 @@ import umc.spring.service.store.StoreCommandService;
 @RestController
 @RequestMapping("/store")
 @RequiredArgsConstructor
-public class StoreController {
+public class RegionController {
 
     private final StoreCommandService storeCommandService;
 
