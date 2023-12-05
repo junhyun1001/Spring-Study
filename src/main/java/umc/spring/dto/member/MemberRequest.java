@@ -28,7 +28,7 @@ public class MemberRequest {
         private Integer birthDay;
         @Size(min = 5, max = 12)
         private String address;
-        @Size(min = 5, max = 12)
+        @NotBlank
         private String specAddress;
         @ExistCategories
         @Size(min = 1, max = 5)
