@@ -1,0 +1,32 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/${mysql.db_name}
+    username: ${mysql.username}
+    password: ${mysql.password}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    # DB 초기화
+  sql:
+    init:
+      mode: always # sql 스크립트 자동실행
+      data-locations: classpath*:db/data.sql
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true                  # sql 쿼리 콘솔 출력 여부
+        format_sql: true                # sql 예쁘게 보이게 포매팅 해줌
+        use_sql_comments: true          # sql 주석 추가 여부
+        hbm2ddl:
+          # create : entity를 drop cascade 하고 다시 생성
+          # update : entity가 수정되면 수정된 내용만 반영
+          # create-drop: session 종료시 스키마 삭제
+          # validate: session 시작시 객체구성과 스키마가 다르면 예외발생
+          auto: create
+        default_batch_fetch_size: 1000    # 데이터를 검색할 때 한 번에 가져올 최대 레코드 수
+    defer-datasource-initialization: true # EntityManagerFactory 빈이 생성되고 초기화된 후까지 DataSource 초기화를 연기할지 여부
+#logging:
+#  level:
+#    org:
+#    hibernate:
+#    type:
+#    descriptor:
+#    sql: trace
