@@ -1,12 +1,14 @@
 package umc.spring.domain;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 import umc.spring.domain.common.BaseEntity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Getter
 public class Region extends BaseEntity {
 
     @Id
