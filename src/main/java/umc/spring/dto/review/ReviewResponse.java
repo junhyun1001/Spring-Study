@@ -11,7 +11,7 @@ public class ReviewResponse {
     @Getter
     public static class ReviewResponseDto {
 
-        private String email;
+        private String nickname;
 
         private String body;
 

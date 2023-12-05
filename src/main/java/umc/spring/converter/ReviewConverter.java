@@ -15,7 +15,7 @@ public class ReviewConverter {
 
     public static ReviewResponse.ReviewResponseDto toReviewResponseDto(Review review) {
         return ReviewResponse.ReviewResponseDto.builder()
-                .email(review.getMember().getEmail())
+                .nickname(review.getMember().getNickname())
                 .body(review.getBody())
                 .score(review.getScore())
                 .createdAt(review.getCreatedAt())

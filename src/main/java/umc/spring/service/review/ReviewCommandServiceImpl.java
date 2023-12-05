@@ -27,7 +27,7 @@ public class ReviewCommandServiceImpl implements ReviewCommandService {
 
         Review review = ReviewConverter.toReview(reviewDto);
 
-        Member member = memberRepository.findByEmail(reviewDto.getEmail()).orElseThrow(() -> new MemberHandler(ErrorStatus.MEMBER_NOT_FOUND));
+        Member member = memberRepository.findById(reviewDto.getMemberId()).orElseThrow(() -> new MemberHandler(ErrorStatus.MEMBER_NOT_FOUND));
         Store store = storeRepository.findById(storeId).orElseThrow(() -> new StoreHandler(ErrorStatus.STORE_NOT_FOUND));
 
         review.setMember(member);
