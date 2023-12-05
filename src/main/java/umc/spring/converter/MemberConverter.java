@@ -9,13 +9,6 @@ import java.util.ArrayList;
 
 public class MemberConverter {
 
-    public static MemberResponse.JoinResponseDto toJoinResponseDto(Member member) {
-        return MemberResponse.JoinResponseDto.builder()
-                .memberId(member.getId())
-                .createdAt(member.getCreatedAt())
-                .build();
-    }
-
     public static Member toMember(MemberRequest.JoinRequestDto joinRequestDto) {
 
         Gender gender = switch (joinRequestDto.getGender()) {
@@ -26,11 +19,22 @@ public class MemberConverter {
 
         return Member.builder()
                 .name(joinRequestDto.getName())
+                .nickname(joinRequestDto.getNickname())
                 .email(joinRequestDto.getEmail())
                 .gender(gender)
+                .birthYear(joinRequestDto.getBirthYear())
+                .birthMonth(joinRequestDto.getBirthMonth())
+                .birthDay(joinRequestDto.getBirthDay())
                 .address(joinRequestDto.getAddress())
                 .specAddress(joinRequestDto.getSpecAddress())
                 .memberPreferList(new ArrayList<>())
+                .build();
+    }
+
+    public static MemberResponse.JoinResponseDto toJoinResponseDto(Member member) {
+        return MemberResponse.JoinResponseDto.builder()
+                .memberId(member.getId())
+                .createdAt(member.getCreatedAt())
                 .build();
     }
 

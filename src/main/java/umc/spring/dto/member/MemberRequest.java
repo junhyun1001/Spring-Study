@@ -14,25 +14,38 @@ public class MemberRequest {
 
     @Getter
     public static class JoinRequestDto {
+
         @NotBlank
         private String name;
+
+        @NotBlank
+        private String nickname;
+
         @Email
         private String email;
+
         @ExistGender
         private String gender;
+
         @NotNull
         private Integer birthYear;
+
         @NotNull
         private Integer birthMonth;
+
         @NotNull
         private Integer birthDay;
+
         @Size(min = 5, max = 12)
         private String address;
-        @Size(min = 5, max = 12)
+
+        @NotBlank
         private String specAddress;
+
         @ExistCategories
         @Size(min = 1, max = 5)
         private List<Long> preferCategory;
+
     }
 
 }

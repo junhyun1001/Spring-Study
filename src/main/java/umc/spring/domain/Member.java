@@ -32,6 +32,21 @@ public class Member extends BaseEntity {
     @Column(nullable = false, length = 20)
     private String name;
 
+    @Column(nullable = false, length = 50)
+    private String email;
+
+    @Column(nullable = false, length = 10)
+    private String nickname;
+
+    @Column(nullable = false)
+    private int birthYear;
+
+    @Column(nullable = false)
+    private int birthMonth;
+
+    @Column(nullable = false)
+    private int birthDay;
+
     @Column(nullable = false, length = 40)
     private String address;
 
@@ -52,9 +67,6 @@ public class Member extends BaseEntity {
     private MemberStatus status;
 
     private LocalDate inactivateDate;
-
-    @Column(nullable = false, length = 50)
-    private String email;
 
     @ColumnDefault("0")
     private Integer point;
