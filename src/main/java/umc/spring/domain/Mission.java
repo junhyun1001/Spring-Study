@@ -1,7 +1,7 @@
 package umc.spring.domain;
 
 import jakarta.persistence.*;
-import org.hibernate.bytecode.enhance.spi.interceptor.AbstractLazyLoadInterceptor;
+import lombok.*;
 import umc.spring.domain.common.BaseEntity;
 import umc.spring.domain.mapping.MemberMission;
 
@@ -10,6 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Builder
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
+@Getter
 public class Mission extends BaseEntity {
 
     @Id
@@ -28,5 +32,13 @@ public class Mission extends BaseEntity {
 
     @OneToMany(mappedBy = "mission", cascade = CascadeType.ALL)
     private List<MemberMission> memberMissionList = new ArrayList<>();
+
+    public void setStore(Store store) {
+        if (this.store != null) {
+            this.store.getMissionList().remove(this);
+        }
+        this.store = store;
+        store.getMissionList().add(this);
+    }
 
 }
