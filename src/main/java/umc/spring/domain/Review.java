@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import umc.spring.domain.common.BaseEntity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -31,7 +32,7 @@ public class Review extends BaseEntity {
     private Store store;
 
     @OneToMany(mappedBy = "review", cascade = CascadeType.ALL)
-    private List<ReviewImage> reviewImageList;
+    private List<ReviewImage> reviewImageList = new ArrayList<>();
 
     public void setMember(Member member) {
         if (this.member != null) {
