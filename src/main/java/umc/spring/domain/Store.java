@@ -7,6 +7,7 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import umc.spring.domain.common.BaseEntity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -36,10 +37,10 @@ public class Store extends BaseEntity {
     private Region region;
 
     @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
-    private List<Mission> missionList;
+    private List<Mission> missionList = new ArrayList<>();
 
     @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
-    private List<Review> reviewList;
+    private List<Review> reviewList = new ArrayList<>();
 
     public void setRegion(Region region) {
         if (this.region != null) {
