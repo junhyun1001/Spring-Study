@@ -1,15 +1,19 @@
 package umc.spring.domain;
 
 import jakarta.persistence.*;
-import org.hibernate.bytecode.enhance.spi.interceptor.AbstractLazyLoadInterceptor;
+import lombok.*;
 import umc.spring.domain.common.BaseEntity;
 import umc.spring.domain.mapping.MemberMission;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Builder
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
+@Getter
 public class Mission extends BaseEntity {
 
     @Id
@@ -18,7 +22,7 @@ public class Mission extends BaseEntity {
 
     private int reward;
 
-    private LocalDateTime deadline;
+    private LocalDate deadline;
 
     private String missionSpec;
 
