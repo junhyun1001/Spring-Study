@@ -51,7 +51,7 @@ public class MissionCommandServiceImpl implements MissionCommandService {
 
         MemberMission memberMission = memberMissionRepository.findByMissionIdAndMemberId(missionId, memberId).orElseThrow(() -> new MemberMissionHandler(ErrorStatus.MEMBER_MISSION_NOT_FOUND));
 
-        if (memberMission.getMissionStatus() == MissionStatus.INPROGRES) {
+        if (memberMission.getMissionStatus() == MissionStatus.INPROGRESS) {
             throw new MemberMissionHandler(ErrorStatus.MEMBER_MISSION_ALREADY_INPROGRESS);
         }
         memberMission.setMissionStatus();
