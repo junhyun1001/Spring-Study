@@ -21,6 +21,7 @@ public class MissionConverter {
         long remainingDay = ChronoUnit.DAYS.between(mission.getCreatedAt(), mission.getDeadline());
 
         return MissionResponse.RegisterMissionResultDto.builder()
+                .missionId(mission.getId())
                 .storeName(mission.getStore().getName())
                 .reward(mission.getReward())
                 .remainingDay(remainingDay)
