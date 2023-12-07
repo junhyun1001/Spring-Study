@@ -27,7 +27,11 @@ public enum ErrorStatus implements BaseCode {
     REGION_NOT_FOUND(HttpStatus.NOT_FOUND, "REGION401", "존재하지 않는 지역입니다."),
 
     // Store 응답
-    STORE_NOT_FOUND(HttpStatus.NOT_FOUND, "STORE401", "존재하지 않는 가게입니다.");
+    STORE_NOT_FOUND(HttpStatus.NOT_FOUND, "STORE401", "존재하지 않는 가게입니다."),
+
+    // Member Mission 응답
+    MEMBER_MISSION_NOT_FOUND(HttpStatus.NOT_FOUND, "MEMBER_MISSION401", "존재하지 않는 회원 미션입니다."),
+    MEMBER_MISSION_ALREADY_INPROGRESS(HttpStatus.CONFLICT, "MEMBER_MISSION409", "이미 진행중인 미션입니다.");
 
 
     private final HttpStatus httpStatus;
