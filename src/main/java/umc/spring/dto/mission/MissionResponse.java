@@ -9,6 +9,8 @@ public class MissionResponse {
     @Getter
     public static class RegisterMissionResultDto {
 
+        private long missionId;
+
         private String storeName; // 식당 이름
 
 //        private String foodCategory; // 카테고리 이름
