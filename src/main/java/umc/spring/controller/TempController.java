@@ -23,7 +23,7 @@ public class TempController {
     }
 
     @GetMapping("/exception")
-    public ApiResponse<TempResponse.TempExceptionDto> exceptionApi(@RequestParam int flag) {
+    public ApiResponse<TempResponse.TempExceptionDto> exceptionApi(@RequestParam(name = "flag") int flag) {
         tempQueryService.checkFlag(flag);
         return ApiResponse.onSuccess(TempConverter.toTempExceptionDto(flag));
     }
