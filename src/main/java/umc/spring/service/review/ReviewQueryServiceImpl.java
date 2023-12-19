@@ -3,6 +3,7 @@ package umc.spring.service.review;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import umc.spring.apipayload.code.status.ErrorStatus;
 import umc.spring.domain.Review;
@@ -23,7 +24,10 @@ public class ReviewQueryServiceImpl implements ReviewQueryService {
 
         Store store = storeRepository.findById(storeId).orElseThrow(() -> new StoreHandler(ErrorStatus.STORE_NOT_FOUND));
 
-        return reviewRepository.findAllByStore(store, PageRequest.of(page, 10));
+        Sort.TypedSort<Review> reviewTypedSort = Sort.sort(Review.class);
+        Sort sort = reviewTypedSort.by(Review::getScore).descending();
+
+        return reviewRepository.findAllByStore(store, PageRequest.of(page, 10, sort));
 
     }
 }
