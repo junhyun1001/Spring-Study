@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import umc.spring.apipayload.ApiResponse;
 import umc.spring.converter.ReviewConverter;
@@ -17,10 +18,13 @@ import umc.spring.dto.review.ReviewRequest;
 import umc.spring.dto.review.ReviewResponse;
 import umc.spring.service.review.ReviewCommandService;
 import umc.spring.service.review.ReviewQueryService;
+import umc.spring.validation.annotation.CheckPage;
+import umc.spring.validation.validator.PageValidator;
 
 @RestController
 @RequestMapping("/reviews")
 @RequiredArgsConstructor
+@Validated
 public class ReviewController {
 
     private final ReviewCommandService reviewCommandService;
@@ -47,7 +51,8 @@ public class ReviewController {
                     @Parameter(name = "storeId", description = "가게의 아이디, path variable 입니다.")
             }
     )
-    public ApiResponse<ReviewResponse.ReviewPreviewListDto> getReviewList(@PathVariable long storeId, @RequestParam int page) {
+    public ApiResponse<ReviewResponse.ReviewPreviewListDto> getReviewList(@PathVariable long storeId, @RequestParam @CheckPage int page) {
+        page = PageValidator.adjustPageNumber(page);
         Page<Review> reviewList = reviewQueryService.getReviewList(storeId, page);
         return ApiResponse.onSuccess(ReviewConverter.toReviewPreviewListDto(reviewList));
     }
