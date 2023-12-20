@@ -51,7 +51,7 @@ public class ReviewController {
                     @Parameter(name = "storeId", description = "가게의 아이디, path variable 입니다.")
             }
     )
-    public ApiResponse<ReviewResponse.ReviewPreviewListDto> getReviewList(@PathVariable long storeId, @RequestParam @CheckPage int page) {
+    public ApiResponse<ReviewResponse.ReviewPageListDto> getReviewList(@PathVariable long storeId, @RequestParam @CheckPage int page) {
         page = PageValidator.adjustPageNumber(page);
         Page<Review> reviewList = reviewQueryService.getReviewList(storeId, page);
         return ApiResponse.onSuccess(ReviewConverter.toReviewPreviewListDto(reviewList));
