@@ -25,7 +25,7 @@ public class ReviewResponse {
 
     @Builder
     @Getter
-    public static class ReviewPageDto {
+    public static class ReviewDto {
 
         private String ownerNickname;
 
@@ -41,7 +41,7 @@ public class ReviewResponse {
     @Getter
     public static class ReviewPageListDto {
 
-        private List<ReviewPageDto> reviewList;
+        private List<ReviewDto> reviewList;
 
         private Integer listSize;
 
