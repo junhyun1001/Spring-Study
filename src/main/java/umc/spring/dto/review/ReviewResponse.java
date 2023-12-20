@@ -55,4 +55,28 @@ public class ReviewResponse {
 
     }
 
+    @Builder
+    @Getter
+    public static class ReviewSliceListDto {
+
+        private List<ReviewDto> reviewList;
+
+        private Integer currentSliceNumber;
+
+        private Integer sliceSize;
+
+        private Integer numberOfElements;
+
+        private Boolean hasContent;
+
+        private Boolean isFirst;
+
+        private Boolean isLast;
+
+        private Boolean hasNext;
+
+        private Boolean hasPrevious;
+
+    }
+
 }

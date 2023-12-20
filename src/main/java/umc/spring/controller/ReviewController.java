@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Slice;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import umc.spring.apipayload.ApiResponse;
@@ -54,7 +55,13 @@ public class ReviewController {
     public ApiResponse<ReviewResponse.ReviewPageListDto> getReviewList(@PathVariable long storeId, @RequestParam @CheckPage int page) {
         page = PageValidator.adjustPageNumber(page);
         Page<Review> reviewList = reviewQueryService.getReviewList(storeId, page);
-        return ApiResponse.onSuccess(ReviewConverter.toReviewPreviewListDto(reviewList));
+        return ApiResponse.onSuccess(ReviewConverter.toReviewPageListDto(reviewList));
+    }
+
+    @GetMapping("/members/{memberId}")
+    public ApiResponse<ReviewResponse.ReviewSliceListDto> getMyReviewList(@PathVariable long memberId) {
+        Slice<Review> reviewList = reviewQueryService.getMyReviewList(memberId);
+        return ApiResponse.onSuccess(ReviewConverter.toReviewSliceListDto(reviewList));
     }
 
 }

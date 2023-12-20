@@ -1,6 +1,7 @@
 package umc.spring.converter;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Slice;
 import umc.spring.domain.Review;
 import umc.spring.dto.review.ReviewRequest;
 import umc.spring.dto.review.ReviewResponse;
@@ -45,6 +46,25 @@ public class ReviewConverter {
                 .totalPage(reviewList.getTotalPages())
                 .totalElements(reviewList.getTotalElements())
                 .listSize(reviewDtoList.size())
+                .reviewList(reviewDtoList)
+                .build();
+
+    }
+
+    public static ReviewResponse.ReviewSliceListDto toReviewSliceListDto(Slice<Review> reviewList) {
+
+        List<ReviewResponse.ReviewDto> reviewDtoList = reviewList.stream()
+                .map(ReviewConverter::toReviewDto).toList();
+
+        return ReviewResponse.ReviewSliceListDto.builder()
+                .currentSliceNumber(reviewList.getNumber())
+                .sliceSize(reviewList.getSize())
+                .numberOfElements(reviewList.getNumberOfElements())
+                .hasContent(reviewList.hasContent())
+                .isFirst(reviewList.isFirst())
+                .isLast(reviewList.isLast())
+                .hasNext(reviewList.hasNext())
+                .hasPrevious(reviewList.hasPrevious())
                 .reviewList(reviewDtoList)
                 .build();
 
