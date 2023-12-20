@@ -25,7 +25,7 @@ public class ReviewResponse {
 
     @Builder
     @Getter
-    public static class ReviewPreviewDto {
+    public static class ReviewDto {
 
         private String ownerNickname;
 
@@ -39,9 +39,9 @@ public class ReviewResponse {
 
     @Builder
     @Getter
-    public static class ReviewPreviewListDto {
+    public static class ReviewPageListDto {
 
-        private List<ReviewPreviewDto> reviewList;
+        private List<ReviewDto> reviewList;
 
         private Integer listSize;
 
@@ -52,6 +52,30 @@ public class ReviewResponse {
         private Boolean isFirst;
 
         private Boolean isLast;
+
+    }
+
+    @Builder
+    @Getter
+    public static class ReviewSliceListDto {
+
+        private List<ReviewDto> reviewList;
+
+        private Integer currentSliceNumber;
+
+        private Integer sliceSize;
+
+        private Integer numberOfElements;
+
+        private Boolean hasContent;
+
+        private Boolean isFirst;
+
+        private Boolean isLast;
+
+        private Boolean hasNext;
+
+        private Boolean hasPrevious;
 
     }
 
