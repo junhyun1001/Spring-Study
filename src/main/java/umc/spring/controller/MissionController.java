@@ -6,6 +6,8 @@ import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import umc.spring.apipayload.ApiResponse;
 import umc.spring.converter.MemberMissionConverter;
@@ -16,11 +18,13 @@ import umc.spring.dto.mission.MissionRequest;
 import umc.spring.dto.mission.MissionResponse;
 import umc.spring.service.mission.MissionCommandService;
 import umc.spring.service.mission.MissionQueryService;
+import umc.spring.validation.annotation.CheckPage;
 import umc.spring.validation.validator.PageValidator;
 
 @RestController
 @RequestMapping("/missions")
 @RequiredArgsConstructor
+@Validated
 public class MissionController {
 
     private final MissionCommandService missionCommandService;
@@ -33,7 +37,7 @@ public class MissionController {
     }
 
     @PatchMapping("/{missionId}/challenges/members/{memberId}")
-    public ApiResponse<MissionResponse.MissionDto> challengeMission(@PathVariable long missionId, @PathVariable long memberId) {
+    public ApiResponse<MissionResponse.MyMissionDto> challengeMission(@PathVariable long missionId, @PathVariable long memberId) {
         MemberMission memberMission = missionCommandService.challengeMission(missionId, memberId);
         return ApiResponse.onSuccess(MemberMissionConverter.toChallengeMissionReulstDto(memberMission));
     }
@@ -52,10 +56,10 @@ public class MissionController {
                     @Parameter(name = "storeId", description = "가게의 아이디, path variable 입니다.")
             }
     )
-    public ApiResponse<?> getMissionByStore(@PathVariable long storeId, @RequestParam int page) {
+    public ApiResponse<MissionResponse.MissionPageListDto> getMissionByStore(@PathVariable long storeId, @RequestParam @CheckPage int page) {
         page = PageValidator.adjustPageNumber(page);
-        missionQueryService.getMissionListByStore(storeId, page);
-        return ApiResponse.onSuccess(MissionConverter.)
+        Page<Mission> missionList = missionQueryService.getMissionListByStore(storeId, page);
+        return ApiResponse.onSuccess(MissionConverter.toMissionPageListDto(missionList));
     }
 
 }
