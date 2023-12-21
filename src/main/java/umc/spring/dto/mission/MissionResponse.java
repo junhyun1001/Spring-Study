@@ -4,6 +4,8 @@ import lombok.Builder;
 import lombok.Getter;
 import umc.spring.domain.enums.MissionStatus;
 
+import java.util.List;
+
 public class MissionResponse {
 
     @Builder
@@ -26,7 +28,7 @@ public class MissionResponse {
 
     @Builder
     @Getter
-    public static class MyMissionListDto {
+    public static class MyMissionDto {
 
         private long missionId;
 
@@ -41,6 +43,24 @@ public class MissionResponse {
         private long remainingDay; // 미션 남은 기간
 
         private MissionStatus missionStatus; // 미션 상태
+
+    }
+
+    @Builder
+    @Getter
+    public static class MissionPageListDto {
+
+        private List<RegisterMissionResultDto> missionList;
+
+        private Integer listSize;
+
+        private Integer totalPage;
+
+        private Long totalElements;
+
+        private Boolean isFirst;
+
+        private Boolean isLast;
 
     }
 
