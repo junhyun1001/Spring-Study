@@ -36,7 +36,7 @@ public class MemberMission extends BaseEntity {
     private Mission mission;
 
     public void setMissionStatus() {
-        this.missionStatus = MissionStatus.INPROGRES;
+        this.missionStatus = MissionStatus.INPROGRESS;
     }
 
 }
