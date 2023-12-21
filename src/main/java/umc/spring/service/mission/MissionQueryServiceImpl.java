@@ -39,11 +39,12 @@ public class MissionQueryServiceImpl implements MissionQueryService {
 
         List<MemberMission> memberMissionList = memberMissionRepository.findAllByMemberIdAndMissionStatus(memberId, MissionStatus.INPROGRESS).orElseThrow(() -> new MemberHandler(ErrorStatus.MEMBER_NOT_FOUND));
 
-        List<Long> missionIdList = memberMissionList.stream()
-                .map(memberMission -> memberMission.getMission().getId())
-                .toList();
+//        List<Long> missionIdList = memberMissionList.stream()
+//                .map(memberMission -> memberMission.getMission().getId())
+//                .toList();
+//
+//        return missionRepository.findAllByIdIn(missionIdList, PageRequest.of(page, 10));
 
-        return missionRepository.findAllByIdIn(missionIdList, PageRequest.of(page, 10));
-
+        return missionRepository.findAllByMemberMissionListIn(memberMissionList, PageRequest.of(page, 10));
     }
 }
