@@ -37,9 +37,9 @@ public class ReviewQueryServiceImpl implements ReviewQueryService {
     }
 
     @Override
-    public Slice<Review> getMyReviewList(long memberId) {
+    public Slice<Review> getMyReviewList(long memberId, int page) {
 
         Member member = memberRepository.findById(memberId).orElseThrow(() -> new MemberHandler(ErrorStatus.MEMBER_NOT_FOUND));
-        return reviewRepository.findAllByMember(member, PageRequest.of(0, 2));
+        return reviewRepository.findAllByMember(member, PageRequest.of(page, 2));
     }
 }
