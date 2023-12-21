@@ -31,23 +31,10 @@ public class MissionConverter {
                 .build();
     }
 
-    public static MissionResponse.RegisterMissionResultDto toRegisterMissionDto(Mission mission) {
-
-        long remainingDay = ChronoUnit.DAYS.between(mission.getCreatedAt(), mission.getDeadline());
-
-        return MissionResponse.RegisterMissionResultDto.builder()
-                .missionId(mission.getId())
-                .storeName(mission.getStore().getName())
-                .missionSpec(mission.getMissionSpec())
-                .reward(mission.getReward())
-                .remainingDay(remainingDay)
-                .build();
-    }
-
     public static MissionResponse.MissionPageListDto toMissionPageListDto(Page<Mission> missionList) {
 
         List<MissionResponse.RegisterMissionResultDto> myMissionDtoList = missionList.stream()
-                .map(MissionConverter::toRegisterMissionDto).toList();
+                .map(MissionConverter::toRegisterMissionResultDto).toList();
 
         return MissionResponse.MissionPageListDto.builder()
                 .isLast(missionList.isLast())
