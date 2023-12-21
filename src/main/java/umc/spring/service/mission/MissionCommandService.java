@@ -9,4 +9,6 @@ public interface MissionCommandService {
     Mission registerMission(long storeId, MissionRequest.RegisterMissionDto registerMissionDto);
 
     MemberMission challengeMission(long missionId, long memberId);
+
+    MemberMission completeMission(long missionId, long memberId);
 }

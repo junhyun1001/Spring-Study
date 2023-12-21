@@ -48,6 +48,20 @@ public class MissionResponse {
 
     @Builder
     @Getter
+    public static class CompleteMissionDto {
+
+        private long missionId;
+
+        private String storeName;
+
+        private int reward;
+
+        private long uuidNumber; // 사장님 구분 번호??
+
+    }
+
+    @Builder
+    @Getter
     public static class MissionPageListDto {
 
         private List<RegisterMissionResultDto> missionList;
