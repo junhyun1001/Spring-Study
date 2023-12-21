@@ -26,7 +26,7 @@ public class MissionResponse {
 
     @Builder
     @Getter
-    public static class MyMissionListDto {
+    public static class MissionDto {
 
         private long missionId;
 

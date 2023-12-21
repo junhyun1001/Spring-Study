@@ -20,14 +20,14 @@ public class MemberMissionConverter {
 
     }
 
-    public static MissionResponse.MyMissionListDto toChallengeMissionReulstDto(MemberMission memberMission) {
+    public static MissionResponse.MissionDto toChallengeMissionReulstDto(MemberMission memberMission) {
 
         Mission mission = memberMission.getMission();
         Store store = mission.getStore();
 
         long remainingDay = ChronoUnit.DAYS.between(mission.getCreatedAt(), mission.getDeadline());
 
-        return MissionResponse.MyMissionListDto.builder()
+        return MissionResponse.MissionDto.builder()
                 .missionId(mission.getId())
                 .storeName(store.getName())
                 .missionSpec(mission.getMissionSpec())
