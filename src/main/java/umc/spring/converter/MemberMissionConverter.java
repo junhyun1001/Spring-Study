@@ -8,6 +8,7 @@ import umc.spring.dto.mission.MissionResponse;
 
 import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 
 public class MemberMissionConverter {
@@ -34,6 +35,22 @@ public class MemberMissionConverter {
                 .reward(mission.getReward())
                 .remainingDay(remainingDay)
                 .missionStatus(memberMission.getMissionStatus())
+                .build();
+
+    }
+
+    public static MissionResponse.CompleteMissionDto toCompleteMissionResultDto(MemberMission memberMission) {
+
+        Mission mission = memberMission.getMission();
+        Store store = mission.getStore();
+
+        long uuidNumber = ThreadLocalRandom.current().nextLong(0, Long.MAX_VALUE);
+
+        return MissionResponse.CompleteMissionDto.builder()
+                .missionId(mission.getId())
+                .storeName(store.getName())
+                .reward(mission.getReward())
+                .uuidNumber(uuidNumber)
                 .build();
 
     }

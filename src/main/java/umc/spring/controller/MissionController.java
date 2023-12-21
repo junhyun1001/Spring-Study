@@ -42,6 +42,12 @@ public class MissionController {
         return ApiResponse.onSuccess(MemberMissionConverter.toChallengeMissionReulstDto(memberMission));
     }
 
+    @PatchMapping("/{missionId}/complete/members/{memberId}")
+    public ApiResponse<MissionResponse.CompleteMissionDto> completeMission(@PathVariable long missionId, @PathVariable long memberId) {
+        MemberMission memberMission = missionCommandService.completeMission(missionId, memberId);
+        return ApiResponse.onSuccess(MemberMissionConverter.toCompleteMissionResultDto(memberMission));
+    }
+
     @GetMapping("/stores/{storeId}")
     @Operation(summary = "특정 가게의 미션 목록 조회 API", description = "특정 가게의 미션 목록을 조회하는 API이며, query String으로 page 번호를 주세요.")
     @ApiResponses(

@@ -35,8 +35,11 @@ public class MemberMission extends BaseEntity {
     @JoinColumn(name = "mission_id")
     private Mission mission;
 
-    public void setMissionStatus() {
-        this.missionStatus = MissionStatus.INPROGRESS;
+    public void setMissionStatus(MissionStatus missionStatus) {
+        switch (missionStatus) {
+            case UNCHALLENGED -> this.missionStatus = MissionStatus.INPROGRESS;
+            case INPROGRESS -> this.missionStatus = MissionStatus.COMPLETED;
+        }
     }
 
 }
