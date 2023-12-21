@@ -59,6 +59,18 @@ public class ReviewController {
     }
 
     @GetMapping("/members/{memberId}")
+    @Operation(summary = "내가 작성한 리뷰 목록 조회 API", description = "내가 작성한 리뷰들의 목록을 조회하는 API이며, PathVariable로 memberId를 주세요.")
+    @ApiResponses(
+            {
+                    @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "COMMON200", description = "OK, 성공"),
+                    @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "MEMBR401", description = "존재하지 않는 회원입니다.")
+            }
+    )
+    @Parameters(
+            {
+                    @Parameter(name = "memberId", description = "회원의 아이디, path variable 입니다.")
+            }
+    )
     public ApiResponse<ReviewResponse.ReviewSliceListDto> getMyReviewList(@PathVariable long memberId) {
         Slice<Review> reviewList = reviewQueryService.getMyReviewList(memberId);
         return ApiResponse.onSuccess(ReviewConverter.toReviewSliceListDto(reviewList));
