@@ -62,4 +62,24 @@ public class MissionController {
         return ApiResponse.onSuccess(MissionConverter.toMissionPageListDto(missionList));
     }
 
+    @GetMapping("/members/{memberId}")
+    @Operation(summary = "내가 진행중인 미션 목록 조회 API", description = "내가 진행중인 미션 목록 조회하는 API이며, query String으로 page 번호를 주세요.")
+    @ApiResponses(
+            {
+                    @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "COMMON200", description = "OK, 성공"),
+                    @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "MEMBER401", description = "존재하지 않는 회원입니다."),
+                    @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "PAGE400", description = "잘못된 페이지 요청입니다.")
+            }
+    )
+    @Parameters(
+            {
+                    @Parameter(name = "memberId", description = "회원의 아이디, path variable 입니다.")
+            }
+    )
+    public ApiResponse<MissionResponse.MyMissionPageListDto> getMyMissionInprogress(@PathVariable long memberId, @RequestParam @CheckPage int page) {
+        page = PageValidator.adjustPageNumber(page);
+        Page<Mission> missionList = missionQueryService.getMyMissionInprogress(memberId, page);
+        return ApiResponse.onSuccess(MissionConverter.toMyMissionPageListDto(missionList));
+    }
+
 }

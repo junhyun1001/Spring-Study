@@ -7,4 +7,5 @@ public interface MissionQueryService {
 
     Page<Mission> getMissionListByStore(long storeId, int page);
 
+    Page<Mission> getMyMissionInprogress(long memberId, int page);
 }

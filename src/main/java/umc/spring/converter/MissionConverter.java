@@ -47,4 +47,20 @@ public class MissionConverter {
 
     }
 
+    public static MissionResponse.MyMissionPageListDto toMyMissionPageListDto(Page<Mission> missionList) {
+
+        List<MissionResponse.RegisterMissionResultDto> myMissionDtoList = missionList.stream()
+                .map(MissionConverter::toRegisterMissionResultDto)
+                .toList();
+
+        return MissionResponse.MyMissionPageListDto.builder()
+                .listSize(myMissionDtoList.size())
+                .totalPage(missionList.getTotalPages())
+                .totalElements(missionList.getTotalElements())
+                .isFirst(missionList.isFirst())
+                .isLast(missionList.isLast())
+                .missionList(myMissionDtoList)
+                .build();
+
+    }
 }
