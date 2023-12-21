@@ -8,6 +8,6 @@ public interface ReviewQueryService {
 
     Page<Review> getReviewList(long storeId, int page);
 
-    Slice<Review> getMyReviewList(long memberId);
+    Slice<Review> getMyReviewList(long memberId, int page);
 
 }
