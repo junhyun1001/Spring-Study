@@ -15,7 +15,7 @@ import umc.spring.repository.MemberMissionRepository;
 import umc.spring.repository.MissionRepository;
 import umc.spring.repository.StoreRepository;
 
-import java.util.stream.Stream;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -37,11 +37,13 @@ public class MissionQueryServiceImpl implements MissionQueryService {
     @Override
     public Page<Mission> getMyMissionInprogress(long memberId, int page) {
 
-        MemberMission memberMission = memberMissionRepository.findByMemberIdAndMissionStatus(memberId, MissionStatus.INPROGRESS).orElseThrow(() -> new MemberHandler(ErrorStatus.MEMBER_NOT_FOUND));
+        List<MemberMission> memberMissionList = memberMissionRepository.findAllByMemberIdAndMissionStatus(memberId, MissionStatus.INPROGRESS).orElseThrow(() -> new MemberHandler(ErrorStatus.MEMBER_NOT_FOUND));
 
-        Stream.of(memberMission).forEach(System.out::println);
+        List<Long> missionIdList = memberMissionList.stream()
+                .map(memberMission -> memberMission.getMission().getId())
+                .toList();
 
-        return missionRepository.findAllById(memberMission.getMission().getId(), PageRequest.of(page, 10));
+        return missionRepository.findAllByIdIn(missionIdList, PageRequest.of(page, 10));
 
     }
 }

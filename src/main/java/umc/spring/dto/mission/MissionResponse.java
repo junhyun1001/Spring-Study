@@ -64,4 +64,22 @@ public class MissionResponse {
 
     }
 
+    @Builder
+    @Getter
+    public static class MyMissionPageListDto {
+
+        private List<RegisterMissionResultDto> missionList;
+
+        private Integer listSize;
+
+        private Integer totalPage;
+
+        private Long totalElements;
+
+        private Boolean isFirst;
+
+        private Boolean isLast;
+
+    }
+
 }
